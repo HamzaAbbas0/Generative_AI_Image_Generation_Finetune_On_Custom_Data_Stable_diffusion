@@ -2193,7 +2193,7 @@
         "import time\n",
         "\n",
         "#@title DreamBooth\n",
-        "HUGGINGFACE_TOKEN = \"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\"\n",
+        "HUGGINGFACE_TOKEN = \"YOUR_HUGGINGFACE_TOKEN\"\n",
         "\n",
         "#@markdown Name/Path of the initial model. (Find model name [here](https://huggingface.co/models))\n",
         "MODEL_NAME = \"runwayml/stable-diffusion-v1-5\" #@param {type:\"string\"}\n",
