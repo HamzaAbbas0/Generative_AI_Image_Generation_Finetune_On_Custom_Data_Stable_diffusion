@@ -1,15 +1,41 @@
-# Generative AI Image Generation with Custom Data
+# Fine-tuning Stable Diffusion on custom images (DreamBooth)
 
-This repository provides tools and scripts for generating images using Generative AI models, fine-tuned on custom datasets. The models can be trained, evaluated, and deployed to create high-quality, tailored images.
+A Google Colab notebook that fine-tunes **Stable Diffusion v1.5** on a small set of your own photos using **DreamBooth**, then generates new images of that subject from text prompts.
 
-## Features
+## What it does
 
-- **Custom Data Training**: Train generative models on your own datasets to produce unique and specific images.
-- **Pre-trained Model Integration**: Utilize pre-trained models as a starting point to enhance training efficiency and output quality.
-- **Flexible Model Architecture**: Support for various generative model architectures, including GANs, VAEs, and diffusion models.
-- **Evaluation Metrics**: Scripts to evaluate model performance using standard metrics to ensure the quality of generated images.
+1. Starts from `runwayml/stable-diffusion-v1-5`.
+2. Trains on a handful of images of one subject, tied to a rare token in the prompt (for example `photo of zwx person`), with a class prompt (`photo of a person`) to keep the model from forgetting the general class.
+3. Saves the fine-tuned weights.
+4. Generates test images from a prompt, with controls for negative prompt, guidance scale, steps, image size and seed.
 
-## Usage
+## Default generation settings
 
-1. **Prepare your dataset**: Organize your dataset in the required format, including images and corresponding labels or categories if needed. Use Brime software to preprocess images and ensure each image's pixels are equalized for consistent quality.
+| Setting | Value |
+|---|---|
+| Guidance scale | 7.5 |
+| Inference steps | 25 |
+| Image size | 512 × 512 |
+| Samples per prompt | 4 |
 
+## Stack
+
+Python · Hugging Face Diffusers · PyTorch · DreamBooth · Google Colab (T4 GPU)
+
+## Run it
+
+1. Rename `Stable_diffusion_fine_tunee.txt` to `Stable_diffusion_fine_tune.ipynb` and open it in Google Colab.
+2. Switch the runtime to a GPU (T4 is enough).
+3. Paste your own Hugging Face token in the first cell.
+4. Set the instance prompt and class prompt, upload 5 to 20 clear images of your subject, and run the training cell.
+5. Use the last cell to generate images with your token in the prompt.
+
+## Tips for good results
+
+- Use images with different backgrounds, angles and lighting.
+- Crop to a square and keep the subject centred.
+- If results look like the training photos copied exactly, reduce the training steps.
+
+## Author
+
+Hamza Abbas · [LinkedIn](https://www.linkedin.com/in/hamza-abbas-851864229/) · [GitHub](https://github.com/HamzaAbbas0)
